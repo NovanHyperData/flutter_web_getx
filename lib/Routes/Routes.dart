@@ -1,4 +1,5 @@
-import 'package:flutter_web_getx/Home/HomeAdmin.dart';
+import 'package:flutter_web_getx/DashboardBoss/DashboardBossView.dart';
+import 'package:flutter_web_getx/DashboardEmployee/DashboardEmployeeView.dart';
 import 'package:flutter_web_getx/Login/LoginBinding.dart';
 import 'package:flutter_web_getx/Login/LoginView.dart';
 import 'package:flutter_web_getx/Login/Middleware.dart';
@@ -25,8 +26,18 @@ class Routes {
       //   transitionDuration: Duration(milliseconds: 300),
       // ),
       GetPage(
-        name: '/home',
-        page: () => HomeAdmin(),
+        name: '/boss',
+        page: () => DashboardBoss(),
+        // binding: HomeBinding(),
+        middlewares: [
+          AuthMiddlware(),
+        ],
+        transition: Transition.fadeIn,
+        transitionDuration: Duration(milliseconds: 300),
+      ),
+      GetPage(
+        name: '/employee',
+        page: () => DashboardEmployee(),
         // binding: HomeBinding(),
         middlewares: [
           AuthMiddlware(),

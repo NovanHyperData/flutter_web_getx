@@ -10,8 +10,8 @@ class User {
   String? userPhone;
   String? userStatus;
   String? userRole;
-  Null? createdAt;
-  Null? updatedAt;
+  String? createdAt;
+  String? updatedAt;
 
   User(
       {this.userId,

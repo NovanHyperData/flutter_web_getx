@@ -14,10 +14,14 @@ class LoginPresenter {
 
   login(String email, String password) async {
     try {
-      User loginResponse = await _loginService.login(email, password);
+      Map loginResponse = await _loginService.login(email, password);
       // storage.write('isLogin', true);
       // storage.write('userData', loginResponse['data'].toMap());
-      _contract.onLoginSuccess(loginResponse);
+      if (loginResponse['message'] == 'Login Success') {
+        _contract.onLoginSuccess(User.fromJson(loginResponse['data']));
+      } else {
+        _contract.onLoginFailed('error');
+      }
     } catch (err) {
       _contract.onLoginFailed(err.toString());
     }

@@ -206,7 +206,13 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
 
   @override
   void onLoginFailed(String message) {
-    print(message);
+    Get.defaultDialog(
+      title: 'Login Failed',
+      middleText: message
+
+    ).then((value) {
+      Get.toNamed('/login');
+    });
   //   Get.close(1);
   //   InfoAlert(
   //     message: message,
@@ -216,13 +222,25 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
 
   @override
   void onLoginSuccess(User data) {
+    var pic;
+    var dashboard;
+      if (data.userRole == '1') {
+        pic = Image.asset('assets/images/autobots.png', width: 75, height: 120);
+      } else {
+        pic = Image.asset('assets/images/decepticons.png', width: 75, height: 120);
+      }
     Get.close(1);
-    // InfoAlert(
-    //   message: "Selamat datang, ${data['data'].userName}",
-    //   variant: ColorVariant.success,
-    // ).show().then((_) {
-      Get.toNamed('/home');
-      
-    // });
+    Get.defaultDialog(
+      title: 'Selamat Datang ${data.userName}',
+      middleText: 'Anda Berhasil Login',
+      content: pic,
+      confirm: ElevatedButton(onPressed: () {
+        if (data.userRole == '1') {
+          Get.toNamed('/boss');
+        } else {
+          Get.toNamed('/employee');
+        }
+      } , child: Text('Masuk'))
+    );
   }
 }

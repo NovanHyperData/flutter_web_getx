@@ -11,8 +11,7 @@ class LoginService extends GetConnect{
     var url = "http://10.21.1.209/lumen/Lumen_API-Robotic/public/login";
     
     var response = await post(url, body);
-    print(response.body);
-    return User.fromJson(response.body);
+    return response.body;
   }
 
 }

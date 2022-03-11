@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-class HomeAdmin extends GetView{
+class DashboardEmployee extends GetView{
+  // final id;
+  // HomeAdmin(this.id){
+    
+  // }
   
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class HomeAdmin extends GetView{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('id')
+            Text('Employee')
           ],
         ),
       ),
