@@ -1,5 +1,9 @@
 import 'package:bs_flutter/bs_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_getx/DashboardBoss/DashboardBossView.dart';
+import 'package:flutter_web_getx/DashboardClient/DashboardClientView.dart';
+import 'package:flutter_web_getx/DashboardEmployee/DashboardEmployeeView.dart';
+import 'package:flutter_web_getx/DashboardOfficeBoy/DashboardOfficeBoy.dart';
 import 'package:flutter_web_getx/Login/LoginContract.dart';
 import 'package:flutter_web_getx/Login/LoginPresenter.dart';
 import 'package:flutter_web_getx/Login/LoginStateController.dart';
@@ -236,9 +240,21 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
       content: pic,
       confirm: ElevatedButton(onPressed: () {
         if (data.userRole == '1') {
-          Get.toNamed('/boss');
+          Get.to(() => DashboardBoss(), arguments: [
+              {"id": '${data.userId}'}
+          ]);
+        }else if (data.userRole == '2') {
+          Get.to(() => DashboardEmployee(), arguments: [
+              {"id": '${data.userId}'}
+          ]);
+        }else if (data.userRole == '3') {
+          Get.to(() => DashboardOfficeBoy(), arguments: [
+              {"id": '${data.userId}'}
+          ]);
         } else {
-          Get.toNamed('/employee');
+          Get.to(() => DashboardClient(), arguments: [
+              {"id": '${data.userId}'}
+          ]);
         }
       } , child: Text('Masuk'))
     );

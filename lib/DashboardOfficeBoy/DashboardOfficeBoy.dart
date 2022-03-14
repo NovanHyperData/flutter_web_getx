@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DashboardEmployee extends GetView{
+class DashboardOfficeBoy extends GetView{
   // final id;
   // HomeAdmin(this.id){
     
@@ -16,7 +16,7 @@ class DashboardEmployee extends GetView{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Employee ${argumentData[0]['id']}')
+            Text('OfficeBoy ${argumentData[0]['id']}')
           ],
         ),
       ),
