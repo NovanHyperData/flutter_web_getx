@@ -10,6 +10,7 @@ import 'package:flutter_web_getx/Login/LoginStateController.dart';
 import 'package:flutter_web_getx/Background/galaxy.dart';
 import 'package:flutter_web_getx/Users/UserModel.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginView extends GetView<LoginStateController> implements LoginContract {
   LoginView({Key? key}) : super(key: key) {
@@ -130,12 +131,13 @@ class LoginView extends GetView<LoginStateController> implements LoginContract {
                                         obscureText: controller.hidden.value,
                                         decoration: InputDecoration(
                                           suffixIcon: IconButton(
+                                            
                                               onPressed: () =>
                                                   controller.hidden.toggle(),
                                               icon: controller.hidden.isTrue
-                                                  ? Icon(Icons.remove_red_eye)
+                                                  ? Icon(Icons.visibility_off)
                                                   : Icon(Icons
-                                                      .remove_red_eye_outlined)),
+                                                      .visibility)),
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5.0),
@@ -240,6 +242,7 @@ class LoginView extends GetView<LoginStateController> implements LoginContract {
 
   @override
   void onLoginSuccess(User data) {
+    final storage = GetStorage();
     var pic;
     var dashboard;
     if (data.userRole == '1') {
@@ -256,21 +259,17 @@ class LoginView extends GetView<LoginStateController> implements LoginContract {
         confirm: ElevatedButton(
             onPressed: () {
               if (data.userRole == '1') {
-                Get.to(() => DashboardBoss(), arguments: [
-                  {"id": '${data.userId}'}
-                ]);
+                storage.write('id', '${data.userId}');
+                Get.toNamed('/boss');
               } else if (data.userRole == '2') {
-                Get.to(() => DashboardEmployee(), arguments: [
-                  {"id": '${data.userId}'}
-                ]);
+                storage.write('id', '${data.userId}');
+                Get.toNamed('/employee');
               } else if (data.userRole == '3') {
-                Get.to(() => DashboardOfficeBoy(), arguments: [
-                  {"id": '${data.userId}'}
-                ]);
+                storage.write('id', '${data.userId}');
+                Get.toNamed('/officeBoy');
               } else {
-                Get.to(() => DashboardClient(), arguments: [
-                  {"id": '${data.userId}'}
-                ]);
+                storage.write('id', '${data.userId}');
+                Get.toNamed('/client');
               }
             },
             child: Text('Masuk')));

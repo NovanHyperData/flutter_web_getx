@@ -38,6 +38,8 @@ dependencies:
   get: ^4.6.1
   get_storage: ^2.0.3
   http: ^0.13.4
+  intl_phone_field: ^3.0.1
+  file_picker: ^4.5.1
 
 dev_dependencies:
   flutter_test:
