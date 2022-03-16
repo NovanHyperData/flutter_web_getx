@@ -15,13 +15,6 @@ class LoginPresenter{
   late final LoginContract _contract;
   final storage = GetStorage();
 
-  logout(){
-    if (storage.read('auth')) {
-      storage.erase();
-    }
-    Get.toNamed('/login');
-  }
-
   login(String email, String password, bool rememberMe) async {
     if (_ctrl.rememberMe.isTrue) {
       storage.write('auth', {

@@ -5,9 +5,11 @@ import 'package:get_storage/get_storage.dart';
 class LoginStateController extends GetxController {
 
   logout(){
-    _email.text = '';
-    _password.text = '';
-    rememberMe.value = false;
+    if (rememberMe.isFalse) {
+      _email.text = '';
+      _password.text = '';
+      rememberMe.value = false;
+    }
     Get.toNamed('/login');
   }
 
