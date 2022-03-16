@@ -60,38 +60,34 @@ class _DatatablesState extends State<Datatables> {
                     Container(
                       margin: EdgeInsets.only(right: 5.0),
                       child: TextButton(
-                        onPressed: () {
-                          _source.insert(0, {'typecd': 'TP1', 'typenm': 'Type ${_source.response.data.length}'});
-                        },
+                        onPressed: () {},
                         child: Text('Insert'),
                       ),
                     ),
                     TextButton(
-                      onPressed: () {
-                        _source.add({'typecd': 'TP1', 'typenm': 'Type ${_source.response.data.length}'});
-                      },
+                      onPressed: () {},
                       child: Text('Add'),
                     )
                   ]),
-                  BsCardContainer(
-                    child: BsDatatable(
-                      source: _source,
-                      title: Text('Datatables Data'),
-                      columns: ExampleSource.columns,
-                      language: BsDatatableLanguage(
-                        nextPagination: 'Next',
-                        previousPagination: 'Previous',
-                        information: 'Show __START__ to __END__ of __FILTERED__ entries',
-                        informationFiltered: 'filtered from __DATA__ total entries',
-                        firstPagination: 'First Page',
-                        lastPagination: 'Last Page',
-                        hintTextSearch: 'Search data ...',
-                        perPageLabel: null,
-                        searchLabel: null
-                      ),
-                      serverSide: (params) => loadApi(params),
-                    ),
-                  ),
+                  // BsCardContainer(
+                  //   child: BsDatatable(
+                  //     source: _source,
+                  //     title: Text('Datatables Data'),
+                  //     columns: ExampleSource.columns,
+                  //     language: const BsDatatableLanguage(
+                  //       nextPagination: 'Next',
+                  //       previousPagination: 'Previous',
+                  //       information: 'Show __START__ to __END__ of __FILTERED__ entries',
+                  //       informationFiltered: 'filtered from __DATA__ total entries',
+                  //       firstPagination: 'First Page',
+                  //       lastPagination: 'Last Page',
+                  //       hintTextSearch: 'Search data ...',
+                  //       perPageLabel: null,
+                  //       searchLabel: null
+                  //     ),
+                  //     serverSide: (params) => loadApi(params),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

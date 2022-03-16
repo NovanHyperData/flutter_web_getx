@@ -11,15 +11,14 @@ import 'package:flutter_web_getx/Background/galaxy.dart';
 import 'package:flutter_web_getx/Users/UserModel.dart';
 import 'package:get/get.dart';
 
-class LoginView extends GetView<LoginStateController> implements LoginContract{
+class LoginView extends GetView<LoginStateController> implements LoginContract {
   LoginView({Key? key}) : super(key: key) {
     _presenter = LoginPresenter(this);
   }
 
   late final LoginPresenter _presenter;
-  
+
   GalaxyBG _bg = new GalaxyBG();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +76,8 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
                               child: Column(
                                 children: [
                                   Text(
-                                    'Welcome !', style: TextStyle(fontSize: 25),
+                                    'Welcome !',
+                                    style: TextStyle(fontSize: 25),
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -87,8 +87,7 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
                                       if (value!.isEmpty) {
                                         return 'Email Required';
                                       }
-                                      bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value);
-                                      if (emailValid == false){
+                                      if (!GetUtils.isEmail(value)) {
                                         return 'Invalid email';
                                       }
                                       return null;
@@ -99,7 +98,8 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
                                     // initialValue: 'alucard@gmail.com',
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                         borderSide: BorderSide(
                                           color: Colors.blue.shade200,
                                           width: 2.0,
@@ -109,43 +109,60 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
                                       contentPadding: EdgeInsets.fromLTRB(
                                           20.0, 10.0, 20.0, 10.0),
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(25.0),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
                                       ),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  TextFormField(
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Password Required';
-                                      }
-                                      return null;
-                                    },
-                                    controller: controller.password,
-                                    autofocus: false,
-                                    // initialValue: 'some password',
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                        borderSide: BorderSide(
-                                          color: Colors.blue.shade200,
-                                          width: 2.0,
+                                  Obx(() => TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Password Required';
+                                          }
+                                          return null;
+                                        },
+                                        controller: controller.password,
+                                        autofocus: false,
+                                        // initialValue: 'some password',
+                                        obscureText: controller.hidden.value,
+                                        decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                              onPressed: () =>
+                                                  controller.hidden.toggle(),
+                                              icon: controller.hidden.isTrue
+                                                  ? Icon(Icons.remove_red_eye)
+                                                  : Icon(Icons
+                                                      .remove_red_eye_outlined)),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                            borderSide: BorderSide(
+                                              color: Colors.blue.shade200,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          hintText: 'Password',
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              20.0, 10.0, 20.0, 10.0),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0)),
                                         ),
-                                      ),
-                                      hintText: 'Password',
-                                      contentPadding: EdgeInsets.fromLTRB(
-                                          20.0, 10.0, 20.0, 10.0),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0)),
-                                    ),
-                                  ),
+                                      )),
                                   SizedBox(
                                     height: 10,
                                   ),
+                                  Obx(() => CheckboxListTile(
+                                        value: controller.rememberMe.value,
+                                        onChanged: (value) =>
+                                            controller.rememberMe.toggle(),
+                                        title: Text('Remember Me '),
+                                        controlAffinity:
+                                            ListTileControlAffinity.leading,
+                                      )),
                                   // Row(
                                   //   mainAxisAlignment:
                                   //       MainAxisAlignment.spaceBetween,
@@ -178,14 +195,15 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
                                     height: 10,
                                   ),
                                   RaisedButton(
-                                    
                                     onPressed: () {
-                                      if (controller.formKey.currentState!.validate()) {
+                                      if (controller.formKey.currentState!
+                                          .validate()) {
                                         _presenter.login(
                                           controller.email.text,
                                           controller.password.text,
+                                          controller.rememberMe.value
                                         );
-                                      }else{
+                                      } else {
                                         return;
                                       }
                                     },
@@ -210,53 +228,51 @@ class LoginView extends GetView<LoginStateController> implements LoginContract{
 
   @override
   void onLoginFailed(String message) {
-    Get.defaultDialog(
-      title: 'Login Failed',
-      middleText: message
-
-    ).then((value) {
+    Get.defaultDialog(title: 'Login Failed', middleText: message).then((value) {
       Get.toNamed('/login');
     });
-  //   Get.close(1);
-  //   InfoAlert(
-  //     message: message,
-  //     variant: ColorVariant.danger,
-  //   ).show();
+    //   Get.close(1);
+    //   InfoAlert(
+    //     message: message,
+    //     variant: ColorVariant.danger,
+    //   ).show();
   }
 
   @override
   void onLoginSuccess(User data) {
     var pic;
     var dashboard;
-      if (data.userRole == '1') {
-        pic = Image.asset('assets/images/autobots.png', width: 75, height: 120);
-      } else {
-        pic = Image.asset('assets/images/decepticons.png', width: 75, height: 120);
-      }
+    if (data.userRole == '1') {
+      pic = Image.asset('assets/images/autobots.png', width: 75, height: 120);
+    } else {
+      pic =
+          Image.asset('assets/images/decepticons.png', width: 75, height: 120);
+    }
     Get.close(1);
     Get.defaultDialog(
-      title: 'Selamat Datang ${data.userName}',
-      middleText: 'Anda Berhasil Login',
-      content: pic,
-      confirm: ElevatedButton(onPressed: () {
-        if (data.userRole == '1') {
-          Get.to(() => DashboardBoss(), arguments: [
-              {"id": '${data.userId}'}
-          ]);
-        }else if (data.userRole == '2') {
-          Get.to(() => DashboardEmployee(), arguments: [
-              {"id": '${data.userId}'}
-          ]);
-        }else if (data.userRole == '3') {
-          Get.to(() => DashboardOfficeBoy(), arguments: [
-              {"id": '${data.userId}'}
-          ]);
-        } else {
-          Get.to(() => DashboardClient(), arguments: [
-              {"id": '${data.userId}'}
-          ]);
-        }
-      } , child: Text('Masuk'))
-    );
+        title: 'Selamat Datang ${data.userName}',
+        middleText: 'Anda Berhasil Login',
+        content: pic,
+        confirm: ElevatedButton(
+            onPressed: () {
+              if (data.userRole == '1') {
+                Get.to(() => DashboardBoss(), arguments: [
+                  {"id": '${data.userId}'}
+                ]);
+              } else if (data.userRole == '2') {
+                Get.to(() => DashboardEmployee(), arguments: [
+                  {"id": '${data.userId}'}
+                ]);
+              } else if (data.userRole == '3') {
+                Get.to(() => DashboardOfficeBoy(), arguments: [
+                  {"id": '${data.userId}'}
+                ]);
+              } else {
+                Get.to(() => DashboardClient(), arguments: [
+                  {"id": '${data.userId}'}
+                ]);
+              }
+            },
+            child: Text('Masuk')));
   }
 }

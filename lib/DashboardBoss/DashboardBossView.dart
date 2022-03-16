@@ -4,6 +4,7 @@ import 'package:flutter_web_getx/Background/galaxy.dart';
 import 'package:flutter_web_getx/DashboardBoss/DashboardBossContract.dart';
 import 'package:flutter_web_getx/DashboardBoss/DashboardBossPresenter.dart';
 import 'package:flutter_web_getx/DashboardBoss/DashboardBossStateController.dart';
+import 'package:flutter_web_getx/Login/LoginStateController.dart';
 import 'package:get/get.dart';
 
 // class DashboardBoss extends GetView implements DashboardBossContract{
@@ -269,8 +270,8 @@ class _DashboardBossState extends State<DashboardBoss> implements DashboardBossC
 
   late final DashboardBossPresenter _dbpr;
   _DashboardBossState(){
-    _dbpr = DashboardBossPresenter(this);
-    _dbpr.index(argumentData[0]['id']);
+    // _dbpr = DashboardBossPresenter(this);
+    // _dbpr.index(argumentData[0]['id']);
     print(argumentData[0]['id']);
   }
 
@@ -345,7 +346,7 @@ class _DashboardBossState extends State<DashboardBoss> implements DashboardBossC
             ListTile(
               title: Text('Exit'),
               leading: Icon(Icons.exit_to_app),
-              onTap: () => null,
+              onTap: () => Get.put(LoginStateController()).logout(),
             ),
           ],
         ),
