@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           getPages: Routes.getRoutes(),
-          initialRoute: '/login',
+          initialRoute: '/',
         ));
   }
 }
