@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_web_getx/Users/UserModel.dart';
+import 'package:flutter_web_getx/Users/Model.dart';
 import 'package:get/get.dart';
 
 class LoginService extends GetConnect{

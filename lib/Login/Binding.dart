@@ -1,4 +1,4 @@
-import 'package:flutter_web_getx/Login/LoginStateController.dart';
+import 'package:flutter_web_getx/Login/StateController.dart';
 import 'package:get/get.dart';
 
 class LoginBinding implements Bindings {

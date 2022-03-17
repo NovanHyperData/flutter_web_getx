@@ -1,13 +1,13 @@
-import 'package:flutter_web_getx/DashboardBoss/DashboardBossView.dart';
-import 'package:flutter_web_getx/DashboardClient/DashboardClientView.dart';
-import 'package:flutter_web_getx/DashboardEmployee/DashboardEmployeeView.dart';
-import 'package:flutter_web_getx/DashboardOfficeBoy/DashboardOfficeBoy.dart';
-import 'package:flutter_web_getx/Login/LoginBinding.dart';
-import 'package:flutter_web_getx/Login/LoginView.dart';
+import 'package:flutter_web_getx/DashboardBoss/View.dart';
+import 'package:flutter_web_getx/DashboardClient/View.dart';
+import 'package:flutter_web_getx/DashboardEmployee/View.dart';
+import 'package:flutter_web_getx/DashboardOfficeBoy/View.dart';
+import 'package:flutter_web_getx/Login/Binding.dart';
+import 'package:flutter_web_getx/Login/View.dart';
 import 'package:flutter_web_getx/Login/Middleware.dart';
-import 'package:flutter_web_getx/Users/Register/RegisterBinding.dart';
-import 'package:flutter_web_getx/Users/Register/RegisterView.dart';
-import 'package:flutter_web_getx/Users/UserView.dart';
+import 'package:flutter_web_getx/Register/Binding.dart';
+import 'package:flutter_web_getx/Users/Register/View.dart';
+import 'package:flutter_web_getx/Users/View.dart';
 import 'package:get/get.dart';
 
 class Routes {

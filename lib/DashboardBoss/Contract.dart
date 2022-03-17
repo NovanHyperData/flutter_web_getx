@@ -1,5 +1,5 @@
-import 'package:flutter_web_getx/DashboardBoss/DashboardBossModel.dart';
-import 'package:flutter_web_getx/Users/UserModel.dart';
+import 'package:flutter_web_getx/DashboardBoss/Model.dart';
+import 'package:flutter_web_getx/Users/Model.dart';
 
 abstract class DashboardBossContract{
   onIndexSuccess(Dashboard data);

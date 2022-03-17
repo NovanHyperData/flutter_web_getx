@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter_web_getx/Login/LoginContract.dart';
-import 'package:flutter_web_getx/Login/LoginService.dart';
-import 'package:flutter_web_getx/Login/LoginStateController.dart';
-import 'package:flutter_web_getx/Users/UserModel.dart';
+import 'package:flutter_web_getx/Login/Contract.dart';
+import 'package:flutter_web_getx/Login/Service.dart';
+import 'package:flutter_web_getx/Login/StateController.dart';
+import 'package:flutter_web_getx/Users/Model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

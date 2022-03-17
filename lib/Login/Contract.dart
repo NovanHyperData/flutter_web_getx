@@ -1,4 +1,4 @@
-import 'package:flutter_web_getx/Users/UserModel.dart';
+import 'package:flutter_web_getx/Users/Model.dart';
 
 abstract class LoginContract {
   onLoginSuccess(User data);

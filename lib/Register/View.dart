@@ -4,7 +4,7 @@ import 'package:bs_flutter/bs_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_getx/Background/galaxy.dart';
-import 'package:flutter_web_getx/Users/Register/RegisterPresenter.dart';
+import 'package:flutter_web_getx/Register/Presenter.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 

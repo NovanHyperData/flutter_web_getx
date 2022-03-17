@@ -1,14 +1,14 @@
 import 'package:bs_flutter/bs_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_getx/DashboardBoss/DashboardBossView.dart';
-import 'package:flutter_web_getx/DashboardClient/DashboardClientView.dart';
-import 'package:flutter_web_getx/DashboardEmployee/DashboardEmployeeView.dart';
-import 'package:flutter_web_getx/DashboardOfficeBoy/DashboardOfficeBoy.dart';
-import 'package:flutter_web_getx/Login/LoginContract.dart';
-import 'package:flutter_web_getx/Login/LoginPresenter.dart';
-import 'package:flutter_web_getx/Login/LoginStateController.dart';
+import 'package:flutter_web_getx/DashboardBoss/View.dart';
+import 'package:flutter_web_getx/DashboardClient/View.dart';
+import 'package:flutter_web_getx/DashboardEmployee/View.dart';
+import 'package:flutter_web_getx/DashboardOfficeBoy/View.dart';
+import 'package:flutter_web_getx/Login/Contract.dart';
+import 'package:flutter_web_getx/Login/Presenter.dart';
+import 'package:flutter_web_getx/Login/StateController.dart';
 import 'package:flutter_web_getx/Background/galaxy.dart';
-import 'package:flutter_web_getx/Users/UserModel.dart';
+import 'package:flutter_web_getx/Users/Model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -233,45 +233,23 @@ class LoginView extends GetView<LoginStateController> implements LoginContract {
     Get.defaultDialog(title: 'Login Failed', middleText: message).then((value) {
       Get.toNamed('/login');
     });
-    //   Get.close(1);
-    //   InfoAlert(
-    //     message: message,
-    //     variant: ColorVariant.danger,
-    //   ).show();
   }
 
   @override
   void onLoginSuccess(User data) {
     final storage = GetStorage();
-    var pic;
-    var dashboard;
     if (data.userRole == '1') {
-      pic = Image.asset('assets/images/autobots.png', width: 75, height: 120);
+      storage.write('id', '${data.userId}');
+      Get.toNamed('/boss');
+    } else if (data.userRole == '2') {
+      storage.write('id', '${data.userId}');
+      Get.toNamed('/employee');
+    } else if (data.userRole == '3') {
+      storage.write('id', '${data.userId}');
+      Get.toNamed('/officeBoy');
     } else {
-      pic =
-          Image.asset('assets/images/decepticons.png', width: 75, height: 120);
+      storage.write('id', '${data.userId}');
+      Get.toNamed('/client');
     }
-    Get.close(1);
-    Get.defaultDialog(
-        title: 'Selamat Datang ${data.userName}',
-        middleText: 'Anda Berhasil Login',
-        content: pic,
-        confirm: ElevatedButton(
-            onPressed: () {
-              if (data.userRole == '1') {
-                storage.write('id', '${data.userId}');
-                Get.toNamed('/boss');
-              } else if (data.userRole == '2') {
-                storage.write('id', '${data.userId}');
-                Get.toNamed('/employee');
-              } else if (data.userRole == '3') {
-                storage.write('id', '${data.userId}');
-                Get.toNamed('/officeBoy');
-              } else {
-                storage.write('id', '${data.userId}');
-                Get.toNamed('/client');
-              }
-            },
-            child: Text('Masuk')));
   }
 }
