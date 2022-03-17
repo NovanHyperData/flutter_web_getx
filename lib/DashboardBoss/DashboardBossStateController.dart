@@ -11,6 +11,7 @@ class DashboardBossController extends GetxController {
   var photo = 'http://10.21.1.209/lumen/Lumen_API-Modern_Office/public/Assets/UsersPhoto/defaultuser.png'.obs;
   var email = 'user@gmail.com'.obs;
 
+
   // @override
   // void onClose() {
   //   _email.dispose();

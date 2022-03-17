@@ -84,6 +84,7 @@ class Routes {
         transition: Transition.fadeIn,
         transitionDuration: Duration(milliseconds: 300),
       ),
+      
     ];
   }
 }

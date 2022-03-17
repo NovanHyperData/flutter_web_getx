@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_web_getx/DashboardBoss/DashboardBossContract.dart';
 import 'package:flutter_web_getx/DashboardBoss/DashboardBossModel.dart';
 import 'package:flutter_web_getx/DashboardBoss/DashboardBossService.dart';
+import 'package:flutter_web_getx/Users/UserModel.dart';
 import 'package:get/get.dart';
 
 class DashboardBossPresenter extends GetxController {
@@ -15,9 +16,18 @@ class DashboardBossPresenter extends GetxController {
   index(String id) async {
     try {
       Map<String, dynamic> dbResponse = await _dbService.index(id);
-      _contract.onIndexSuccess(dbResponse);
+      _contract.onIndexSuccess(Dashboard.fromJson(dbResponse));
     } catch (err) {
       _contract.onIndexFailed(err.toString());
+    }
+  }
+
+  user(String id) async {
+    try {
+      Map<String, dynamic> dbResponse = await _dbService.user(id);
+      _contract.onUserSuccess(User.fromJson(dbResponse));
+    } catch (err) {
+      _contract.onUserFailed(err.toString());
     }
   }
 }

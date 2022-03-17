@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
 class Dashboard {
-  RxInt? users;
-  RxInt? tasks;
-  RxInt? snacks;
-  RxInt? drinks;
+  int? users;
+  int? tasks;
+  int? snacks;
+  int? drinks;
 
   Dashboard(
       {this.users,

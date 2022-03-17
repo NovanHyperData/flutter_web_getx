@@ -9,6 +9,7 @@ class User {
   String? userBirth;
   String? userPhone;
   String? userStatus;
+  String? userSalary;
   String? userRole;
   String? createdAt;
   String? updatedAt;
@@ -24,6 +25,7 @@ class User {
       this.userBirth,
       this.userPhone,
       this.userStatus,
+      this.userSalary,
       this.userRole,
       this.createdAt,
       this.updatedAt});
@@ -39,6 +41,7 @@ class User {
     userBirth = json['user_birth'];
     userPhone = json['user_phone'];
     userStatus = json['user_status'];
+    userSalary = json['user_salary'];
     userRole = json['user_role'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -56,6 +59,7 @@ class User {
     data['user_birth'] = this.userBirth;
     data['user_phone'] = this.userPhone;
     data['user_status'] = this.userStatus;
+    data['user_salary'] = this.userSalary;
     data['user_role'] = this.userRole;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
