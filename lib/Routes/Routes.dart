@@ -1,12 +1,12 @@
-import 'package:flutter_web_getx/DashboardBoss/View.dart';
-import 'package:flutter_web_getx/DashboardClient/View.dart';
-import 'package:flutter_web_getx/DashboardEmployee/View.dart';
-import 'package:flutter_web_getx/DashboardOfficeBoy/View.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardBoss/View.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardClient/View.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardEmployee/View.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardOfficeBoy/View.dart';
 import 'package:flutter_web_getx/Login/Binding.dart';
 import 'package:flutter_web_getx/Login/View.dart';
 import 'package:flutter_web_getx/Login/Middleware.dart';
 import 'package:flutter_web_getx/Register/Binding.dart';
-import 'package:flutter_web_getx/Users/Register/View.dart';
+import 'package:flutter_web_getx/Register/View.dart';
 import 'package:flutter_web_getx/Users/View.dart';
 import 'package:get/get.dart';
 

@@ -1,20 +1,38 @@
 import 'package:bs_flutter/bs_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardEmployee/Contract.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardEmployee/Presenter.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardEmployee/StateController.dart';
+import 'package:flutter_web_getx/Dashboard/Model.dart';
+import 'package:flutter_web_getx/Login/StateController.dart';
+import 'package:flutter_web_getx/Users/Model.dart';
+import 'package:flutter_web_getx/mainPresenter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class DashboardEmployee extends GetView{
+class DashboardEmployee extends GetView implements DashboardEmployeeContract{
   // final id;
   // HomeAdmin(this.id){
     
   // }
+  late final DashboardEmployeePresenter _dbpr;
   final box = GetStorage();
+  final _ctrl = Get.put(DashboardEmployeeController());
+  final pr = Get.put(mainPresenter());
+
+  DashboardEmployee() {
+    final box = GetStorage();
+    final data = box.read("id");
+    _dbpr = DashboardEmployeePresenter(this);
+    _dbpr.user(data);
+    _dbpr.index(data);
+  }
   
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text('Dashboard Boss')),
+      appBar: AppBar(title: Text('Dashboard Employee')),
       drawer: Drawer(
         child: ListView(
           // Remove padding
@@ -99,62 +117,31 @@ class DashboardEmployee extends GetView{
               children: [
                 BsCol(
                   padding: EdgeInsets.all(15.0),
-                  sizes: ColScreen(sm: Col.col_3),
+                  sizes: ColScreen(sm: Col.col_4),
                   child: Container(
                     height: 150,
                     child: Card(
                       color: Colors.blue.shade300,
                       child: Container(
                         margin: EdgeInsets.all(3),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.icecream,
-                              size: 50,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                // Text('1.000.000.000', style: TextStyle(fontSize: 21,)),
+                                Icon(
+                                  Icons.icecream,
+                                  size: 50,
+                                ),
                                 Obx(() => Text('${_ctrl.snacks}',
                                     style: TextStyle(
                                       fontSize: 32,
                                     )))
                               ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                BsCol(
-                  padding: EdgeInsets.all(15.0),
-                  sizes: ColScreen(sm: Col.col_3),
-                  child: Container(
-                    height: 150,
-                    child: Card(
-                      color: Colors.green,
-                      child: Container(
-                        margin: EdgeInsets.all(3),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.person,
-                              size: 50,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Obx(() => Text('${_ctrl.users}',
-                                    style: TextStyle(
-                                      fontSize: 32,
-                                    ))),
-                                // Text('employees', style: TextStyle(fontSize: 12,))
-                              ],
-                            )
+                            SizedBox(height: 15),
+                            Text('camilan pesanan anda hari ini', style: TextStyle(fontSize: 16), textAlign: TextAlign.center)
                           ],
                         ),
                       ),
@@ -163,30 +150,31 @@ class DashboardEmployee extends GetView{
                 ),
                 BsCol(
                   padding: EdgeInsets.all(15.0),
-                  sizes: ColScreen(sm: Col.col_3),
+                  sizes: ColScreen(sm: Col.col_4),
                   child: Container(
                     height: 150,
                     child: Card(
                       color: Colors.orange,
                       child: Container(
                         margin: EdgeInsets.all(3),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.library_books,
-                              size: 50,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
+                                Icon(
+                                  Icons.assignment,
+                                  size: 50,
+                                ),
                                 Obx(() => Text('${_ctrl.tasks}',
                                     style: TextStyle(
                                       fontSize: 32,
-                                    ))),
-                                // Text('tasks', style: TextStyle(fontSize: 12,))
+                                    )))
                               ],
-                            )
+                            ),
+                            SizedBox(height: 15),
+                            Text('Tugas yang tersisa', style: TextStyle(fontSize: 16), textAlign: TextAlign.center)
                           ],
                         ),
                       ),
@@ -195,30 +183,31 @@ class DashboardEmployee extends GetView{
                 ),
                 BsCol(
                   padding: EdgeInsets.all(15.0),
-                  sizes: ColScreen(sm: Col.col_3),
+                  sizes: ColScreen(sm: Col.col_4),
                   child: Container(
                     height: 150,
                     child: Card(
                       color: Colors.red,
                       child: Container(
                         margin: EdgeInsets.all(3),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.coffee,
-                              size: 50,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                // Text('data', style: TextStyle(fontSize: 56,)),
+                                Icon(
+                                  Icons.coffee,
+                                  size: 50,
+                                ),
                                 Obx(() => Text('${_ctrl.drinks}',
                                     style: TextStyle(
                                       fontSize: 32,
                                     )))
                               ],
-                            )
+                            ),
+                            SizedBox(height: 15),
+                            Text('minuman pesanan anda hari ini', style: TextStyle(fontSize: 16), textAlign: TextAlign.center)
                           ],
                         ),
                       ),
@@ -240,6 +229,34 @@ class DashboardEmployee extends GetView{
         ],
       ),
     );
+  }
+
+  @override
+  onIndexFailed(String message) {
+    // TODO: implement onIndexFailed
+    print(message);
+  }
+
+  @override
+  onIndexSuccess(Dashboard data) {
+    // TODO: implement onIndexSuccess
+    _ctrl.snacks.value = data.snacks!;
+    _ctrl.tasks.value = data.tasks!;
+    _ctrl.drinks.value = data.drinks!;
+  }
+
+  @override
+  onUserFailed(String message) {
+    // TODO: implement onUserFailed
+    print(message);
+  }
+
+  @override
+  onUserSuccess(User user) {
+    // TODO: implement onUserSuccess
+    _ctrl.name.value = user.userName!;
+    _ctrl.photo.value = user.userPhoto!;
+    _ctrl.email.value = user.userEmail!;
   }
 
 }

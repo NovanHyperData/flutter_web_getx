@@ -1,9 +1,5 @@
 import 'package:bs_flutter/bs_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_getx/DashboardBoss/View.dart';
-import 'package:flutter_web_getx/DashboardClient/View.dart';
-import 'package:flutter_web_getx/DashboardEmployee/View.dart';
-import 'package:flutter_web_getx/DashboardOfficeBoy/View.dart';
 import 'package:flutter_web_getx/Login/Contract.dart';
 import 'package:flutter_web_getx/Login/Presenter.dart';
 import 'package:flutter_web_getx/Login/StateController.dart';

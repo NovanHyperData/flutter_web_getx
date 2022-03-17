@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_web_getx/DashboardBoss/Contract.dart';
-import 'package:flutter_web_getx/DashboardBoss/Model.dart';
-import 'package:flutter_web_getx/DashboardBoss/Service.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardBoss/Contract.dart';
+import 'package:flutter_web_getx/Dashboard/DashboardBoss/Service.dart';
+import 'package:flutter_web_getx/Dashboard/Model.dart';
 import 'package:flutter_web_getx/Users/Model.dart';
 import 'package:get/get.dart';
 
